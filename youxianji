@@ -1,0 +1,72 @@
+package com.youjianji;
+
+import java.math.BigDecimal;
+import java.util.Scanner;
+
+public class youxianji {
+
+	private static Scanner in;
+	private static Scanner in2;
+	private static Scanner scan;
+	private static Scanner scan2;
+
+	public static void main(String[] args) {
+		
+		System.out.println("同意第一个因素的人数有几个？：");
+		in = new Scanner(System.in);
+        int lenA=in.nextInt();//初始化i数组长度
+        System.out.println("同意第二个因素的人数有几个？：");
+        in2 = new Scanner(System.in);
+        int lenB=in2.nextInt();//初始化j数组长度
+        
+		int[] A = new int[lenA];//声明i数组
+		int[] B = new int[lenB];//声明j数组
+			
+		/*******************************/
+		for(int a=1; a<=A.length; a++){
+			System.out.println("请给第一个因素打分，" + "请输入第"+ a +"个评分");
+			scan = new Scanner(System.in);
+	        A[a-1]=scan.nextInt();
+		}
+		for(int b=1; b<=B.length; b++){
+			System.out.println("请给第二个因素打分，" + "请输入第"+ b +"个评分");
+			scan2 = new Scanner(System.in);
+	        B[b-1]=scan2.nextInt();
+		}
+		
+		double resultA=0;
+		for(int i=0; i<A.length; i++){
+			resultA +=A[i];
+		}
+		
+		double resultB=0;
+		for(int j=0; j<B.length; j++){
+			resultB +=B[j];
+		}
+		
+		double resultC=0;
+		for(int m=0; m<B.length; m++){
+			resultC +=1.0/B[m];
+		}
+		
+		double resultD=0;
+		for(int n=0; n<A.length; n++){
+			resultD +=1.0/A[n];
+		}
+		
+		double sumA=resultA+resultC;
+		double sumB=resultB+resultD;	
+		
+		BigDecimal   b   =   new   BigDecimal(sumA);
+		double   sum_A   =   b.setScale(2,   BigDecimal.ROUND_HALF_UP).doubleValue();
+		BigDecimal   b1   =   new   BigDecimal(sumB);
+		double   sum_B   =   b1.setScale(2,   BigDecimal.ROUND_HALF_UP).doubleValue();
+		
+		System.out.println("第一个因素的分数是："+sum_A);
+		System.out.println("第二个因素的分数是："+sum_B);
+		System.out.println("是否继续：Y/N?");
+	    String YorN = in.next();
+	}
+
+}
+

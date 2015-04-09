@@ -1,0 +1,60 @@
+package com.gandengyan;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+
+public class GanDengYan {
+
+	public static void main(String[] args) {
+		Scanner in=new Scanner(System.in);  
+
+		System.out.println("请输入游戏玩家的人数：");
+		int num = in.nextInt();
+		System.out.println("请输入炸弹的个数：");
+		int boom= in.nextInt();
+		
+		String[] strName = new String[num];
+		int[] score = new int[num];
+		
+		for(int i=0; i<strName.length; i++){
+			System.out.println("请输入游戏玩家名称和剩余牌数：(注意哦~若这局一张牌都没出就输入500！)");
+			strName[i] = in.next();
+			score[i] = in.nextInt();
+		}
+	    
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		int n=boom;//z代表炸弹出现的个数
+    	int x=(int) Math.pow(2,n);//n代表2的z次方
+    	     
+    	for(int i=0; i<strName.length; i++){
+    		if(score[i] == 500){
+    			map.put(strName[i], 500);
+    		}
+    		else{
+    			map.put(strName[i], score[i] * x);
+    		}
+		}
+        
+        Set<String> keySet = map.keySet();//将map集合转成set集合类型
+        
+        Iterator<String> iter = keySet.iterator();//迭代器
+        int sum = 0;//初始化总计分
+        while(iter.hasNext())
+        {	
+        	String key = iter.next();
+        	Integer value = map.get(key);
+        	sum = sum + value.intValue();
+        	System.out.println("姓名:" + key +",扣分:" + value);  
+        }        
+        
+        System.out.println("这轮胜利的人赢了：" + sum + "分");
+        System.out.println("是否继续：Y/N?");
+        String YorN = in.next();
+       
+        
+	}
+
+}
